@@ -1,26 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react"
+import "./App.css"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class Form extends Component {
+  state = {
+    likes: 0,
+    like_status: "Likes",
+  }
+
+  clickHandler = event => {
+    this.setState({
+      likes: this.state.likes + 1
+    })
+
+    if (this.state.likes === 0) {
+      this.setState({
+        like_status: "Like"
+      })
+    } else {
+      this.setState({
+        like_status: "Likes"
+      })
+    }
+  }
+
+  render() {
+    return (
+      <>
+        <div className="container">
+          <h1>Like Button</h1>
+          <button onClick={this.clickHandler}>
+            {this.state.likes} {this.state.like_status}
+          </button>
+        </div>
+      </>
+    )
+  }
 }
 
-export default App;
+export default Form
